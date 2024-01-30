@@ -96,31 +96,42 @@
         </div>
     </div>
     <script>
-        function insert(num)
-        {
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            if (!isNaN(parseInt(key))) {
+                insert(key);
+            } else if (key === 'Enter') {
+                calcular();
+            } else if (key === 'Backspace') {
+                back();
+            } else if (key === 'C') {
+                clean();
+            } else if (key === '+' || key === '-') {
+                insert(key);
+            }
+            
+        });
+
+        function insert(num) {
             var numero = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = numero + num
+            document.getElementById('resultado').innerHTML = numero + num;
         }
 
-        function clean()
-        {
+        function clean() {
             document.getElementById('resultado').innerHTML = "";
         }
-        function back()
-        {
+
+        function back() {
             var resultado = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = resultado.substring(0,resultado.length -1)
+            document.getElementById('resultado').innerHTML = resultado.substring(0,resultado.length -1);
         }
-        function calcular() 
-        { 
+
+        function calcular() { 
             var resultado = document.getElementById('resultado').innerHTML;
-            if(resultado)
-            {
-                document.getElementById('resultado').innerHTML = eval(resultado)
-            }
-            else
-            {
-                document.getElementById('resultado').innerHTML = "Nada..."
+            if(resultado) {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            } else {
+                document.getElementById('resultado').innerHTML = "Nada...";
             }
         }
     </script>
